@@ -31,12 +31,7 @@ const ClosingMessage = () => {
     };
 
     return (
-        <section className="min-h-screen flex items-center justify-center px-6 py-24 bg-cream-100 overflow-hidden relative">
-            {/* Decorative center heart icon */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] -z-10">
-                <Heart className="w-[80vw] h-[80vw] text-rose-gold-500 fill-current" />
-            </div>
-
+        <section className="min-h-screen flex items-center justify-center px-6 py-24 w-full relative">
             <motion.div
                 className="w-full max-w-3xl text-center"
                 initial={{ opacity: 0, y: 30 }}
@@ -46,13 +41,12 @@ const ClosingMessage = () => {
             >
                 {/* Message */}
                 <div className="mb-16">
-                    <Heart className="w-8 h-8 text-rose-gold-500/40 mx-auto mb-8" strokeWidth={1} />
-                    <p className="font-serif text-3xl md:text-5xl text-charcoal-900 leading-[1.3] font-medium tracking-tight px-4">
+                    <p className="font-serif text-3xl md:text-5xl text-charcoal leading-[1.3] font-medium tracking-tight px-4 italic">
                         "{weddingData.messages.closing}"
                     </p>
                 </div>
 
-                {/* Share Button */}
+                {/* Share Button - Elegant Pill */}
                 <motion.div
                     className="relative inline-block"
                     whileHover={{ scale: 1.02 }}
@@ -60,19 +54,19 @@ const ClosingMessage = () => {
                 >
                     <button
                         onClick={handleShare}
-                        className="flex items-center gap-4 px-12 py-5
-                       bg-rose-gold-500 text-cream-50 font-sans text-sm font-semibold
-                       rounded-full shadow-2xl shadow-rose-gold-500/20
-                       transition-all duration-300 hover:bg-rose-gold-600 uppercase tracking-[0.2em]"
+                        className="flex items-center gap-4 px-10 py-5
+                       bg-dusty-rose text-beige-100 font-sans text-xs font-semibold
+                       rounded-full
+                       transition-all duration-500 hover:bg-dusty-rose-light uppercase tracking-[0.2em]"
                     >
                         {copied ? (
                             <>
-                                <Check className="w-4 h-4" strokeWidth={2} />
+                                <Check className="w-4 h-4" strokeWidth={1.5} />
                                 Link Copied
                             </>
                         ) : (
                             <>
-                                <Share2 className="w-4 h-4" strokeWidth={2} />
+                                <Share2 className="w-4 h-4" strokeWidth={1.5} />
                                 Share Invitation
                             </>
                         )}
@@ -81,20 +75,14 @@ const ClosingMessage = () => {
 
                 {/* Final Footer */}
                 <motion.div
-                    className="mt-32 pt-12 border-t border-charcoal-900/5"
+                    className="mt-32 pt-12 border-t border-charcoal/5"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 1 }}
                 >
-                    <p className="font-serif text-2xl md:text-3xl text-charcoal-800/60 italic">
+                    <p className="font-serif text-2xl text-charcoal-light italic">
                         Until we see you there
                     </p>
-
-                    <div className="mt-12 opacity-20">
-                        <p className="font-sans text-[9px] uppercase tracking-widest">
-                            Crafted for this special union
-                        </p>
-                    </div>
                 </motion.div>
             </motion.div>
         </section>

@@ -18,101 +18,97 @@ const EventCard = ({ event }) => {
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 15 },
+        hidden: { opacity: 0, y: 30 },
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, ease: "easeOut" }
+            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
         }
     };
 
     return (
-        <section
-            className="flex items-center justify-center px-6 py-20 md:py-32 bg-cream-100"
-        >
+        <section className="flex flex-col items-center justify-center px-6 py-24 w-full">
             <motion.div
-                className="w-full max-w-2xl text-center relative"
+                className="w-full max-w-md text-center"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
             >
-                {/* Event Title */}
-                <motion.h2
-                    className="font-serif text-4xl md:text-6xl text-charcoal-900 mb-6 md:mb-10 tracking-tight"
-                    variants={itemVariants}
-                >
-                    {event.displayType}
-                </motion.h2>
-
-                {/* Illustration Header */}
-                <motion.div
-                    className="flex justify-center mb-10"
-                    variants={itemVariants}
-                >
-                    <div className="relative">
-                        <div className="absolute -inset-6 bg-rose-gold-500/5 blur-2xl rounded-full" />
-                        <motion.img
-                            src={illustrationPath}
-                            alt="Event Illustration"
-                            className="w-44 h-44 md:w-56 md:h-56 object-contain relative z-10"
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            transition={{ duration: 1 }}
-                            viewport={{ once: true }}
-                        />
-                    </div>
+                {/* Event Title Block */}
+                <motion.div variants={itemVariants} className="mb-10">
+                    <span className="font-sans text-[0.65rem] md:text-xs uppercase tracking-[0.25em] text-dusty-rose font-semibold block mb-4">
+                        Join Us For
+                    </span>
+                    <h2 className="font-serif text-5xl md:text-6xl text-charcoal font-medium tracking-tight">
+                        {event.displayType}
+                    </h2>
                 </motion.div>
 
-                {/* Temporal Details */}
-                <motion.div className="space-y-2 mb-10" variants={itemVariants}>
-                    <div className="flex items-center justify-center gap-2 text-rose-gold-600 mb-2">
-                        <div className="w-8 h-px bg-current opacity-20" />
-                        <span className="font-sans text-xs uppercase tracking-[0.3em] font-semibold">
-                            Save the Date
-                        </span>
-                        <div className="w-8 h-px bg-current opacity-20" />
+                {/* Illustration - Free Floating */}
+                <motion.div
+                    className="flex justify-center mb-12"
+                    variants={itemVariants}
+                >
+                    <motion.img
+                        src={illustrationPath}
+                        alt="Event Illustration"
+                        className="w-48 h-48 md:w-56 md:h-56 object-contain drop-shadow-xl" // Subtle drop shadow instead of blur blob
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 1 }}
+                        viewport={{ once: true }}
+                    />
+                </motion.div>
+
+                {/* Unified Editorial Detail Card */}
+                <motion.div
+                    className="p-10 editorial-card rounded-[2rem] space-y-8"
+                    variants={itemVariants}
+                >
+                    {/* Date & Time */}
+                    <div className="space-y-2">
+                        <p className="font-sans text-xs uppercase tracking-widest text-charcoal-light/60 font-semibold">
+                            When
+                        </p>
+                        <p className="font-serif text-3xl text-charcoal font-medium">
+                            {event.date}
+                        </p>
+                        <div className="flex items-center justify-center gap-2 text-dusty-rose">
+                            <Clock className="w-4 h-4" />
+                            <p className="font-sans text-sm tracking-wide font-medium">
+                                {event.time}
+                            </p>
+                        </div>
                     </div>
-                    <p className="font-serif text-2xl md:text-4xl text-charcoal-800">
-                        {event.date}
-                    </p>
-                    <div className="flex items-center justify-center gap-3 text-rose-gold-600 mt-4">
-                        <Clock className="w-5 h-5" strokeWidth={2} />
-                        <p className="font-sans text-lg md:text-xl font-normal tracking-wide">
-                            {event.time}
+
+                    <div className="w-full h-px bg-charcoal/5" />
+
+                    {/* Venue */}
+                    <div className="space-y-2">
+                        <p className="font-sans text-xs uppercase tracking-widest text-charcoal-light/60 font-semibold">
+                            Where
+                        </p>
+                        <p className="font-serif text-2xl text-charcoal font-medium leading-tight">
+                            {event.venue.name}
+                        </p>
+                        <p className="font-serif text-lg text-charcoal-light italic">
+                            {event.venue.fullAddress}
                         </p>
                     </div>
-                </motion.div>
 
-                {/* Venue Details Card */}
-                <motion.div
-                    className="mb-12 p-10 border border-rose-gold-500/20 bg-white-card material-card shadow-premium rounded-[2rem]"
-                    variants={itemVariants}
-                >
-                    <p className="font-serif text-2xl md:text-3xl text-charcoal-900 mb-4 font-medium tracking-tight">
-                        {event.venue.name}
-                    </p>
-                    <div className="w-8 h-px bg-rose-gold-500/20 mx-auto mb-4" />
-                    <p className="font-sans text-base md:text-lg text-charcoal-800/60 font-medium max-w-sm mx-auto leading-relaxed">
-                        {event.venue.fullAddress}
-                    </p>
-                </motion.div>
-
-                {/* Action Button */}
-                <motion.div variants={itemVariants}>
-                    <a
-                        href={event.mapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative inline-flex items-center gap-3 px-10 py-4
-                       bg-charcoal-900 text-cream-50 font-sans text-sm font-medium
-                       rounded-full overflow-hidden transition-all duration-500
-                       hover:shadow-[0_20px_40px_rgba(44,44,44,0.2)]"
-                    >
-                        <div className="absolute inset-0 bg-rose-gold-600 translate-y-full transition-transform duration-500 group-hover:translate-y-0" />
-                        <MapPin className="relative w-4 h-4" strokeWidth={1.5} />
-                        <span className="relative z-10 uppercase tracking-widest">Get Directions</span>
-                    </a>
+                    {/* Button */}
+                    <div className="pt-4">
+                        <a
+                            href={event.mapsUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-8 py-3 bg-charcoal text-beige-100 font-sans text-xs uppercase tracking-widest rounded-full hover:bg-dusty-rose transition-colors duration-300"
+                        >
+                            <MapPin className="w-3 h-3" />
+                            <span>Get Directions</span>
+                        </a>
+                    </div>
                 </motion.div>
             </motion.div>
         </section>

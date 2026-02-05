@@ -25,62 +25,61 @@ const FamilyBlessings = () => {
     };
 
     return (
-        <section className="flex items-center justify-center px-6 py-32 bg-cream-100">
+        <section className="flex flex-col items-center justify-center px-6 py-24 w-full">
             <motion.div
-                className="w-full max-w-4xl"
+                className="w-full max-w-md text-center"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.4 }}
+                viewport={{ once: true, amount: 0.2 }}
             >
-                <motion.div className="text-center mb-16 md:mb-24" variants={itemVariants}>
-                    <span className="font-sans text-xs md:text-sm uppercase tracking-[0.4em] text-rose-gold-600 block mb-4">
-                        Honoring Tradition
+                <motion.div className="mb-12 md:mb-16" variants={itemVariants}>
+                    <span className="font-sans text-[0.65rem] md:text-xs uppercase tracking-[0.25em] text-dusty-rose font-semibold block mb-6">
+                        With Love From
                     </span>
-                    <h2 className="font-serif text-4xl md:text-5xl text-charcoal-900 font-medium">
-                        With Love & Blessings from
+                    <h2 className="font-serif text-4xl md:text-5xl text-charcoal font-medium tracking-tight">
+                        The Families
                     </h2>
-                    <div className="w-12 h-px bg-rose-gold-500/30 mx-auto mt-8" />
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-8 md:gap-12 relative">
-                    {/* Groom's Family Card */}
+                <div className="space-y-8 md:space-y-12">
+                    {/* Groom's Family Card - Editorial Style */}
                     <motion.div
-                        className="text-center p-10 border border-rose-gold-500/20 bg-white-card material-card shadow-premium rounded-[2rem] space-y-4"
+                        className="p-8 md:p-10 editorial-card rounded-[2rem] space-y-4"
                         variants={itemVariants}
                     >
-                        <p className="font-sans text-xs uppercase tracking-widest text-charcoal-800/40 font-semibold mb-2">
+                        <p className="font-sans text-[0.65rem] uppercase tracking-widest text-charcoal-light/60 font-semibold mb-2">
                             Groom's Family
                         </p>
                         <div className="space-y-1">
-                            <p className="font-serif text-2xl md:text-3xl text-charcoal-900 font-medium">
+                            <p className="font-serif text-2xl md:text-3xl text-charcoal font-medium">
                                 {couple.groom.parents.father}
                             </p>
-                            <p className="font-serif text-xl text-rose-gold-500 italic">
-                                &
-                            </p>
-                            <p className="font-serif text-2xl md:text-3xl text-charcoal-900 font-medium">
+                            <div className="py-1">
+                                <span className="font-serif text-lg text-dusty-rose italic">&</span>
+                            </div>
+                            <p className="font-serif text-2xl md:text-3xl text-charcoal font-medium">
                                 {couple.groom.parents.mother}
                             </p>
                         </div>
                     </motion.div>
 
-                    {/* Bride's Family Card */}
+                    {/* Bride's Family Card - Editorial Style */}
                     <motion.div
-                        className="text-center p-10 border border-rose-gold-500/20 bg-white-card material-card shadow-premium rounded-[2rem] space-y-4"
+                        className="p-8 md:p-10 editorial-card rounded-[2rem] space-y-4"
                         variants={itemVariants}
                     >
-                        <p className="font-sans text-xs uppercase tracking-widest text-charcoal-800/40 font-semibold mb-2">
+                        <p className="font-sans text-[0.65rem] uppercase tracking-widest text-charcoal-light/60 font-semibold mb-2">
                             Bride's Family
                         </p>
                         <div className="space-y-1">
-                            <p className="font-serif text-2xl md:text-3xl text-charcoal-900 font-medium">
+                            <p className="font-serif text-2xl md:text-3xl text-charcoal font-medium">
                                 {couple.bride.parents.father}
                             </p>
-                            <p className="font-serif text-xl text-rose-gold-500 italic">
-                                &
-                            </p>
-                            <p className="font-serif text-2xl md:text-3xl text-charcoal-900 font-medium">
+                            <div className="py-1">
+                                <span className="font-serif text-lg text-dusty-rose italic">&</span>
+                            </div>
+                            <p className="font-serif text-2xl md:text-3xl text-charcoal font-medium">
                                 {couple.bride.parents.mother}
                             </p>
                         </div>
@@ -88,10 +87,10 @@ const FamilyBlessings = () => {
                 </div>
 
                 <motion.div
-                    className="mt-20 md:mt-32 text-center"
+                    className="mt-20 md:mt-24 text-center"
                     variants={itemVariants}
                 >
-                    <p className="font-serif text-lg md:text-xl text-charcoal-800/60 max-w-lg mx-auto leading-relaxed">
+                    <p className="font-serif text-lg text-charcoal-light/80 max-w-xs mx-auto leading-relaxed italic">
                         Request the pleasure of your company to celebrate the union of Pruthvi & Akruthi
                     </p>
                 </motion.div>

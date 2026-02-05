@@ -7,24 +7,38 @@ export default {
     theme: {
         extend: {
             colors: {
-                cream: {
-                    50: '#FDFCFA',
-                    100: '#E5E0D8',  // Rich Oatmeal background for unmistakable contrast
-                    200: '#EBE5D9',
+                // Editorial Palette
+                beige: {
+                    100: '#EDE2DA', // Warm Soft Beige Background
+                    200: '#E5DCD4',
+                },
+                ivory: {
+                    100: '#F4ECE6', // Warm Ivory Tint (Cards)
+                    200: '#FAF5F1',
                 },
                 charcoal: {
-                    800: '#3A3A3A',
-                    900: '#2C2C2C',  // Main text
+                    DEFAULT: '#2C2C2C', // Primary Text
+                    light: '#4A4A4A',
                 },
-                'rose-gold': {
-                    400: '#C98F7B',
-                    500: '#B76E79',  // Primary accent
-                    600: '#A35863',
+                'dusty-rose': {
+                    DEFAULT: '#C98F8F', // Accent
+                    light: '#D4A3A3',
                 },
-                'white-card': '#FFFFFF', // Explicit pure white cardstock
+            },
+            fontFamily: {
+                serif: ['Cormorant Garamond', 'serif'],
+                sans: ['Lato', 'sans-serif'],
+            },
+            letterSpacing: {
+                'tight-editorial': '-0.03em',
+                'widest-editorial': '0.2em',
+            },
+            fontSize: {
+                'hero-name': ['3.5rem', { lineHeight: '1', letterSpacing: '-0.04em' }],
+                'editorial-label': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.15em' }],
             },
             boxShadow: {
-                'premium': '0 35px 70px -15px rgba(163, 88, 99, 0.2)',
+                'editorial': '0 4px 20px -5px rgba(201, 143, 143, 0.15)', // Very subtle dusty rose glow
             },
             fontFamily: {
                 serif: ['Cormorant Garamond', 'serif'],

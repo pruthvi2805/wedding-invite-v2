@@ -17,68 +17,73 @@ const CoupleReveal = () => {
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 20 },
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } // Editorial ease
         }
     };
 
     return (
-        <section className="flex items-center justify-center px-6 py-32 bg-cream-100 overflow-hidden">
+        <section className="flex flex-col items-center justify-center px-6 py-24 md:py-32 overflow-hidden w-full">
             <motion.div
-                className="w-full max-w-4xl text-center"
+                className="w-full max-w-md flex flex-col items-center" // Enforcing same max-width for names and cards
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
             >
-                {/* Decorative Element */}
-                <motion.div variants={itemVariants} className="mb-12">
-                    <div className="w-16 h-px bg-rose-gold-500/20 mx-auto" />
-                </motion.div>
+                {/* Top Label */}
+                <motion.span
+                    variants={itemVariants}
+                    className="text-[0.65rem] md:text-xs uppercase tracking-[0.25em] text-dusty-rose font-sans font-semibold mb-8"
+                >
+                    Are Getting Married
+                </motion.span>
 
-                {/* Names Section */}
-                <motion.div variants={itemVariants} className="space-y-4 md:space-y-6">
-                    <h1 className="font-serif text-6xl md:text-9xl font-semibold tracking-tighter text-charcoal-900 leading-none">
+                {/* Names Block - Vertical Stack for Poster Feel */}
+                <motion.div variants={itemVariants} className="w-full text-center space-y-0 mb-12">
+                    <h1 className="font-serif text-6xl md:text-7xl lg:text-8xl text-charcoal font-medium tracking-tighter leading-[0.9]">
                         {couple.groom.name}
                     </h1>
 
-                    <div className="flex items-center justify-center gap-6 py-2">
-                        <div className="h-px flex-1 bg-rose-gold-500/10 max-w-[40px] md:max-w-[80px]" />
-                        <span className="font-serif text-4xl md:text-6xl text-rose-gold-500 italic">
+                    <div className="py-2 md:py-4">
+                        <span className="font-serif text-3xl md:text-4xl text-dusty-rose italic">
                             &
                         </span>
-                        <div className="h-px flex-1 bg-rose-gold-500/10 max-w-[40px] md:max-w-[80px]" />
                     </div>
 
-                    <h1 className="font-serif text-6xl md:text-9xl font-semibold tracking-tighter text-charcoal-900 leading-none">
+                    <h1 className="font-serif text-6xl md:text-7xl lg:text-8xl text-charcoal font-medium tracking-tighter leading-[0.9]">
                         {couple.bride.name}
                     </h1>
                 </motion.div>
 
-                {/* Tagline */}
+                {/* Event Summary Card - "Printed" Look */}
+                <motion.div
+                    className="w-full p-8 md:p-10 editorial-card rounded-[2rem] text-center"
+                    variants={itemVariants}
+                >
+                    <p className="font-sans text-xs uppercase tracking-[0.2em] text-charcoal-light mb-4">
+                        {primaryEvent.date}
+                    </p>
+
+                    <h2 className="font-serif text-2xl md:text-3xl text-charcoal tracking-tight mb-2">
+                        The Celebration
+                    </h2>
+
+                    <p className="font-serif text-lg text-dusty-rose italic">
+                        {primaryEvent.venue.city}, {primaryEvent.venue.state}
+                    </p>
+                </motion.div>
+
+                {/* Tagline as a footer to this poster */}
                 <motion.p
-                    className="mt-12 font-serif text-xl md:text-3xl text-charcoal-800/80 font-light italic tracking-wide"
+                    className="mt-12 font-sans text-[0.65rem] uppercase tracking-[0.2em] text-charcoal-light/60"
                     variants={itemVariants}
                 >
                     {tagline}
                 </motion.p>
-
-                {/* Event Summary */}
-                <motion.div
-                    className="mt-16 inline-block px-10 py-8 border border-rose-gold-500/20 bg-white-card material-card shadow-premium rounded-3xl"
-                    variants={itemVariants}
-                >
-                    <p className="font-sans text-sm md:text-base uppercase tracking-[0.3em] text-charcoal-800 font-medium">
-                        {primaryEvent.date}
-                    </p>
-                    <div className="h-px w-8 bg-rose-gold-500/30 mx-auto my-4" />
-                    <p className="font-serif text-lg md:text-xl text-rose-gold-600 italic">
-                        {primaryEvent.venue.city}, {primaryEvent.venue.state}
-                    </p>
-                </motion.div>
             </motion.div>
         </section>
     );

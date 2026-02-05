@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <main className="relative min-h-screen bg-cream-100 selection:bg-rose-gold-200">
+    <main className="relative min-h-screen bg-beige-100 selection:bg-dusty-rose-light">
       {/* 1. Monogram Entrance (Option 1) */}
       <LetterLanding onComplete={handleIntroComplete} />
 
@@ -28,7 +28,7 @@ function App() {
       >
         {/* We keep the details "alive" or mount them after intro for performance/SEO */}
         {introComplete && (
-          <div className="bg-cream-100">
+          <div className="bg-beige-100">
             <CoupleReveal />
             <FamilyBlessings />
             {weddingData.events.map((event, index) => (
@@ -44,7 +44,7 @@ function App() {
         __html: `
         html { 
           scroll-behavior: smooth; 
-          background-color: #E5E0D8;
+          background-color: #EDE2DA;
         }
         * { -webkit-tap-highlight-color: transparent; }
         

@@ -11,60 +11,21 @@ const itemVariants = {
     }
 };
 
-const CountdownUnit = ({ label, value, max, index }) => {
-    // Calculate progress for the circular stroke
-    const radius = 45;
-    const circumference = 2 * Math.PI * radius;
-    const strokeDashoffset = circumference - (value / max) * circumference;
-
+const CountdownUnit = ({ label, value, index }) => {
     return (
         <motion.div
-            className="relative flex flex-col items-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            className="flex flex-col items-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * index, duration: 0.8 }}
             viewport={{ once: true }}
         >
-            <div className="relative w-24 h-24 md:w-32 md:h-32">
-                {/* Background Track */}
-                <svg className="w-full h-full -rotate-90">
-                    <circle
-                        cx="50%"
-                        cy="50%"
-                        r={radius}
-                        fill="none"
-                        stroke="#EBE5D9"
-                        strokeWidth="1.5"
-                        className="opacity-40"
-                    />
-                    {/* Progress Stroke */}
-                    <motion.circle
-                        cx="50%"
-                        cy="50%"
-                        r={radius}
-                        fill="none"
-                        stroke="#B76E79"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        initial={{ strokeDashoffset: circumference }}
-                        animate={{ strokeDashoffset }}
-                        transition={{ duration: 1, ease: "easeInOut" }}
-                        style={{
-                            strokeDasharray: circumference,
-                        }}
-                    />
-                </svg>
-
-                {/* Value Display */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-serif text-3xl md:text-4xl font-semibold text-charcoal-900 tracking-tighter">
-                        {String(value).padStart(2, '0')}
-                    </span>
-                </div>
+            <div className="relative">
+                <span className="font-serif text-5xl md:text-7xl text-charcoal font-medium tracking-tight leading-none">
+                    {String(value).padStart(2, '0')}
+                </span>
             </div>
-
-            {/* Label */}
-            <span className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-rose-gold-600 font-medium">
+            <span className="mt-4 font-sans text-[0.65rem] uppercase tracking-[0.25em] text-dusty-rose font-semibold">
                 {label}
             </span>
         </motion.div>
@@ -100,8 +61,8 @@ const Countdown = () => {
     if (!timeLeft) return null;
 
     return (
-        <section className="flex items-center justify-center px-6 py-32 bg-cream-100 overflow-hidden">
-            <div className="w-full max-w-5xl text-center">
+        <section className="flex flex-col items-center justify-center px-6 py-32 w-full">
+            <div className="w-full max-w-4xl text-center">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -110,38 +71,29 @@ const Countdown = () => {
                     viewport={{ once: true }}
                     className="mb-20"
                 >
-                    <span className="font-serif text-xl md:text-2xl text-rose-gold-500 italic block mb-4">
-                        With Love & Anticipation
-                    </span>
-                    <h2 className="font-serif text-4xl md:text-6xl text-charcoal-900 font-medium tracking-tight">
+                    <span className="font-sans text-[0.65rem] md:text-xs uppercase tracking-[0.25em] text-dusty-rose font-semibold block mb-6">
                         The Celebration Begins In
-                    </h2>
-                    <div className="w-16 h-px bg-charcoal-900/10 mx-auto mt-8" />
+                    </span>
+                    {/* Minimalist Divider */}
+                    <div className="w-px h-16 bg-gradient-to-b from-charcoal/0 via-charcoal/20 to-charcoal/0 mx-auto" />
                 </motion.div>
 
-                <motion.div
-                    className="p-10 md:p-16 border border-rose-gold-500/20 bg-white-card material-card shadow-premium rounded-[3rem]"
-                    variants={itemVariants}
-                >
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                        <CountdownUnit label="Days" value={timeLeft.days} max={365} index={0} />
-                        <CountdownUnit label="Hours" value={timeLeft.hours} max={24} index={1} />
-                        <CountdownUnit label="Minutes" value={timeLeft.minutes} max={60} index={2} />
-                        <CountdownUnit label="Seconds" value={timeLeft.seconds} max={60} index={3} />
-                    </div>
-                </motion.div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-x-24 gap-y-16">
+                    <CountdownUnit label="Days" value={timeLeft.days} index={0} />
+                    <CountdownUnit label="Hours" value={timeLeft.hours} index={1} />
+                    <CountdownUnit label="Minutes" value={timeLeft.minutes} index={2} />
+                    <CountdownUnit label="Seconds" value={timeLeft.seconds} index={3} />
+                </div>
 
                 <motion.div
-                    className="mt-20 flex items-center justify-center gap-4 text-charcoal-800/40"
+                    className="mt-24 flex items-center justify-center gap-4 text-charcoal-light/40"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 1, duration: 1 }}
                 >
-                    <div className="w-8 h-px bg-current" />
-                    <p className="font-sans text-[10px] uppercase tracking-[0.5em]">
-                        Until March 12, 2026
+                    <p className="font-sans text-[0.65rem] uppercase tracking-[0.4em]">
+                        March 12, 2026
                     </p>
-                    <div className="w-8 h-px bg-current" />
                 </motion.div>
             </div>
         </section>
